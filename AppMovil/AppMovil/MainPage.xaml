@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+<!--Un comentario mas-->
         <BoxView BackgroundColor="BlueViolet" Grid.Row="0"></BoxView>
         <BoxView BackgroundColor="Red" Grid.Row="1"></BoxView>
         <Grid Grid.Row="2">
