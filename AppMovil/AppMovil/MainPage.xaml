@@ -12,7 +12,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    <!--Comentario nuevo-->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
