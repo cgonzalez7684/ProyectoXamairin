@@ -26,5 +26,8 @@ namespace WApi.Models
         }
     
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Creditos> Creditos { get; set; }
+        public virtual DbSet<InfoClientes> InfoClientes { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
     }
 }

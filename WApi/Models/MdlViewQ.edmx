@@ -4,40 +4,157 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ViewQModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ViewQModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clientes">
           <Key>
-            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="CodCliente" />
           </Key>
-          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodCliente" Type="int" Nullable="false" />
           <Property Name="Identificacion" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="NomCliente" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ape1Cliente" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ape2Cliente" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EstadoCliente" Type="int" Nullable="false" />
+          <Property Name="AFILIACION" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Creditos">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+            <PropertyRef Name="Operacion" />
+          </Key>
+          <Property Name="CodCliente" Type="int" Nullable="false" />
+          <Property Name="Operacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MontoOperacion" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SaldoActual" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FechaFormali" Type="datetime" />
+          <Property Name="FechaVenci" Type="datetime" />
+          <Property Name="UltimoPago" Type="datetime" />
+          <Property Name="Tasa" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Plazo" Type="int" />
+          <Property Name="CuotasAtraso" Type="int" />
+          <Property Name="Cuota" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="InfoClientes">
+          <Key>
+            <PropertyRef Name="IdInfo" />
+          </Key>
+          <Property Name="IdInfo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodCliente" Type="int" Nullable="false" />
+          <Property Name="Institucion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AnosFidelidad" Type="int" />
+          <Property Name="NumCreditos" Type="int" />
+          <Property Name="NumAhorros" Type="int" />
+          <Property Name="NumInversiones" Type="int" />
+          <Property Name="CatSugef" Type="varchar" MaxLength="2" />
+          <Property Name="CPH" Type="int" />
+          <Property Name="CPC" Type="int" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+            <PropertyRef Name="Producto" />
+            <PropertyRef Name="TipoProd" />
+          </Key>
+          <Property Name="CodCliente" Type="int" Nullable="false" />
+          <Property Name="Producto" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CodProd" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DescProd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoProd" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="FechaApertura" Type="datetime" />
+          <Property Name="FechaVenci" Type="datetime" />
+          <Property Name="UltimoPago" Type="datetime" />
+          <Property Name="SaldoActual" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IntAcum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Tasa" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Periocidad" Type="int" />
+          <Property Name="PLAZO" Type="int" />
+          <Property Name="Cupones" Type="int" />
+          <Property Name="CuotasAtraso" Type="int" />
+          <Property Name="Cuota" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityContainer Name="ViewQModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Creditos" EntityType="Self.Creditos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoClientes" EntityType="Self.InfoClientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ViewQModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ViewQEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="ViewQModel.Clientes" />
+          <EntitySet Name="Creditos" EntityType="ViewQModel.Creditos" />
+          <EntitySet Name="InfoClientes" EntityType="ViewQModel.InfoClientes" />
+          <EntitySet Name="Producto" EntityType="ViewQModel.Producto" />
+        </EntityContainer>
         <EntityType Name="Clientes">
           <Key>
-            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="CodCliente" />
           </Key>
-          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Identificacion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NomCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ape1Cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ape2Cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="NomCliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ape1Cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ape2Cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EstadoCliente" Type="Int32" Nullable="false" />
+          <Property Name="AFILIACION" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="ViewQEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
-        </EntityContainer>
+        <EntityType Name="Creditos">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+            <PropertyRef Name="Operacion" />
+          </Key>
+          <Property Name="CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="Operacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MontoOperacion" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SaldoActual" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FechaFormali" Type="DateTime" Precision="3" />
+          <Property Name="FechaVenci" Type="DateTime" Precision="3" />
+          <Property Name="UltimoPago" Type="DateTime" Precision="3" />
+          <Property Name="Tasa" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Plazo" Type="Int32" />
+          <Property Name="CuotasAtraso" Type="Int32" />
+          <Property Name="Cuota" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="InfoClientes">
+          <Key>
+            <PropertyRef Name="IdInfo" />
+          </Key>
+          <Property Name="IdInfo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="Institucion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AnosFidelidad" Type="Int32" />
+          <Property Name="NumCreditos" Type="Int32" />
+          <Property Name="NumAhorros" Type="Int32" />
+          <Property Name="NumInversiones" Type="Int32" />
+          <Property Name="CatSugef" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CPH" Type="Int32" />
+          <Property Name="CPC" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+            <PropertyRef Name="Producto1" />
+            <PropertyRef Name="TipoProd" />
+          </Key>
+          <Property Name="CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="Producto1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CodProd" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DescProd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoProd" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FechaApertura" Type="DateTime" Precision="3" />
+          <Property Name="FechaVenci" Type="DateTime" Precision="3" />
+          <Property Name="UltimoPago" Type="DateTime" Precision="3" />
+          <Property Name="SaldoActual" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IntAcum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tasa" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Periocidad" Type="Int32" />
+          <Property Name="PLAZO" Type="Int32" />
+          <Property Name="Cupones" Type="Int32" />
+          <Property Name="CuotasAtraso" Type="Int32" />
+          <Property Name="Cuota" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,12 +164,68 @@
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="ViewQModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
-                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="NomCliente" ColumnName="NomCliente" />
-                <ScalarProperty Name="Ape1Cliente" ColumnName="Ape1Cliente" />
-                <ScalarProperty Name="Ape2Cliente" ColumnName="Ape2Cliente" />
+                <ScalarProperty Name="AFILIACION" ColumnName="AFILIACION" />
                 <ScalarProperty Name="EstadoCliente" ColumnName="EstadoCliente" />
+                <ScalarProperty Name="Ape2Cliente" ColumnName="Ape2Cliente" />
+                <ScalarProperty Name="Ape1Cliente" ColumnName="Ape1Cliente" />
+                <ScalarProperty Name="NomCliente" ColumnName="NomCliente" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Creditos">
+            <EntityTypeMapping TypeName="ViewQModel.Creditos">
+              <MappingFragment StoreEntitySet="Creditos">
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="CuotasAtraso" ColumnName="CuotasAtraso" />
+                <ScalarProperty Name="Plazo" ColumnName="Plazo" />
+                <ScalarProperty Name="Tasa" ColumnName="Tasa" />
+                <ScalarProperty Name="UltimoPago" ColumnName="UltimoPago" />
+                <ScalarProperty Name="FechaVenci" ColumnName="FechaVenci" />
+                <ScalarProperty Name="FechaFormali" ColumnName="FechaFormali" />
+                <ScalarProperty Name="SaldoActual" ColumnName="SaldoActual" />
+                <ScalarProperty Name="MontoOperacion" ColumnName="MontoOperacion" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoClientes">
+            <EntityTypeMapping TypeName="ViewQModel.InfoClientes">
+              <MappingFragment StoreEntitySet="InfoClientes">
+                <ScalarProperty Name="CPC" ColumnName="CPC" />
+                <ScalarProperty Name="CPH" ColumnName="CPH" />
+                <ScalarProperty Name="CatSugef" ColumnName="CatSugef" />
+                <ScalarProperty Name="NumInversiones" ColumnName="NumInversiones" />
+                <ScalarProperty Name="NumAhorros" ColumnName="NumAhorros" />
+                <ScalarProperty Name="NumCreditos" ColumnName="NumCreditos" />
+                <ScalarProperty Name="AnosFidelidad" ColumnName="AnosFidelidad" />
+                <ScalarProperty Name="Institucion" ColumnName="Institucion" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="IdInfo" ColumnName="IdInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ViewQModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="CuotasAtraso" ColumnName="CuotasAtraso" />
+                <ScalarProperty Name="Cupones" ColumnName="Cupones" />
+                <ScalarProperty Name="PLAZO" ColumnName="PLAZO" />
+                <ScalarProperty Name="Periocidad" ColumnName="Periocidad" />
+                <ScalarProperty Name="Tasa" ColumnName="Tasa" />
+                <ScalarProperty Name="IntAcum" ColumnName="IntAcum" />
+                <ScalarProperty Name="SaldoActual" ColumnName="SaldoActual" />
+                <ScalarProperty Name="UltimoPago" ColumnName="UltimoPago" />
+                <ScalarProperty Name="FechaVenci" ColumnName="FechaVenci" />
+                <ScalarProperty Name="FechaApertura" ColumnName="FechaApertura" />
+                <ScalarProperty Name="TipoProd" ColumnName="TipoProd" />
+                <ScalarProperty Name="DescProd" ColumnName="DescProd" />
+                <ScalarProperty Name="CodProd" ColumnName="CodProd" />
+                <ScalarProperty Name="Producto1" ColumnName="Producto" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

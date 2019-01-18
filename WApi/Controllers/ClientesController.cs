@@ -18,9 +18,49 @@ namespace WApi.Controllers
         private ViewQEntities db = new ViewQEntities();
 
         // GET: api/Clientes
+        [HttpGet]
         public List<Clientes> GetClientes()
         {
             return db.Clientes.ToList();
+        }
+
+        [HttpGet]
+        [ActionName("InfoCliente")]
+        public List<object> InfoCliente(string id)
+        {
+            IEnumerable<object> ListadoCreditos = (from Ope in db.Creditos
+                                                   join Cli in db.Clientes
+                                                        on Ope.CodCliente equals Cli.CodCliente
+                                                   where Cli.Identificacion == id
+                                                   select new
+                                                   {
+                                                       Operacion = Ope.Operacion,
+                                                       MontoOperacion = Ope.MontoOperacion,
+                                                       SaldoActual = Ope.SaldoActual,
+                                                       Tasa = Ope.Tasa,
+                                                       Plazo = Ope.Plazo
+                                                   }
+                                                   );
+
+            IEnumerable<object> Listado = (from Cli in db.Clientes
+                                           join Infor in db.InfoClientes
+                                               on Cli.CodCliente equals Infor.CodCliente
+                                           where Cli.Identificacion == id
+                                           select new
+                                           {
+                                               NombreCliente = Cli.NomCliente + " " + Cli.Ape1Cliente + " " + Cli.Ape2Cliente,
+                                               Institucion = Infor.Institucion.ToUpper(),
+                                               NumCreditos = Infor.NumCreditos,
+                                               NumAhorros = Infor.NumAhorros,
+                                               NumInversiones = Infor.NumInversiones,
+                                               Afiliacion = Cli.AFILIACION,
+                                               Fidelidad = Infor.AnosFidelidad,
+                                               CatSugef = Infor.CatSugef,
+                                               Cph = Infor.CPH,
+                                               Cpc = Infor.CPC,
+                                               Operaciones = ListadoCreditos
+                                           });
+            return Listado.ToList();
         }
 
         // GET: api/Clientes/5
@@ -45,7 +85,7 @@ namespace WApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != clientes.IdCliente)
+            if (id != clientes.CodCliente)
             {
                 return BadRequest();
             }
@@ -83,7 +123,7 @@ namespace WApi.Controllers
             db.Clientes.Add(clientes);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = clientes.IdCliente }, clientes);
+            return CreatedAtRoute("DefaultApi", new { id = clientes.CodCliente }, clientes);
         }
 
         // DELETE: api/Clientes/5
@@ -113,7 +153,7 @@ namespace WApi.Controllers
 
         private bool ClientesExists(int id)
         {
-            return db.Clientes.Count(e => e.IdCliente == id) > 0;
+            return db.Clientes.Count(e => e.CodCliente == id) > 0;
         }
     }
 }

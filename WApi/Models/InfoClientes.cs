@@ -12,14 +12,17 @@ namespace WApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Clientes
+    public partial class InfoClientes
     {
+        public int IdInfo { get; set; }
         public int CodCliente { get; set; }
-        public string Identificacion { get; set; }
-        public string NomCliente { get; set; }
-        public string Ape1Cliente { get; set; }
-        public string Ape2Cliente { get; set; }
-        public int EstadoCliente { get; set; }
-        public Nullable<System.DateTime> AFILIACION { get; set; }
+        public string Institucion { get; set; }
+        public Nullable<int> AnosFidelidad { get; set; }
+        public Nullable<int> NumCreditos { get; set; }
+        public Nullable<int> NumAhorros { get; set; }
+        public Nullable<int> NumInversiones { get; set; }
+        public string CatSugef { get; set; }
+        public Nullable<int> CPH { get; set; }
+        public Nullable<int> CPC { get; set; }
     }
 }

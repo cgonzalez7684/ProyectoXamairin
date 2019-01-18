@@ -2,53 +2,216 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AppMovil"
-             x:Class="AppMovil.MainPage" BackgroundColor="White">
+             x:Class="AppMovil.MainPage" BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="TextColor" Value="CadetBlue" />
+            </Style>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="Placeholder" Value="Dato"/>
+                
+            </Style>
+            <Style x:Key="Mica" TargetType="local:TxtCaja">
+                <Setter Property="TextColor" Value="DarkBlue"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="InputTransparent" Value="True"></Setter>
+                
+                <!--<Setter Property="MaxLength" Value="10"></Setter>-->
+            </Style>
+            <Style x:Key="StyCedula" TargetType="local:TxtCaja">
+                <Setter Property="TextColor" Value="DarkBlue"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <!--<Setter Property="MaxLength" Value="10"></Setter>-->
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <!--Comentario nuevo-->
-    <Grid RowSpacing="0">
+    <Grid RowSpacing="2">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 <!--Un comentario mas-->
-        <BoxView BackgroundColor="BlueViolet" Grid.Row="0"></BoxView>
-        <BoxView BackgroundColor="Red" Grid.Row="1"></BoxView>
-        <Grid Grid.Row="2">
+        <!--Rosibel-->
+        <!--<BoxView BackgroundColor="BlueViolet" Grid.Row="0"></BoxView>-->
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>               
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Entry x:Name="TxtCed" Keyboard="Numeric"  BackgroundColor="CadetBlue" TextColor="White" Placeholder="Ingresar cedula" PlaceholderColor="LightGray" FontSize="30" HorizontalTextAlignment="Center"></Entry>
+                <!--<local:TxtCaja x:Name="TxtCed" Style="{StaticResource Key=StyCedula}" BackgroundColor="Bisque" Placeholder="Ingresar cedula"></local:TxtCaja>-->
+                <!--<Frame BorderColor="Black" CornerRadius="6">
+                    <Entry x:Name="TxtAsociado" Keyboard="Chat"></Entry>
+                </Frame>-->
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
-                <Label Text="Nombre" Style="{StaticResource LabelStyle}"  />
+                <Button Text="Consultar" WidthRequest="100" x:Name="BtnConsultar"></Button>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Asociado" Style="{StaticResource LabelStyle}"  />
             </StackLayout>
             <StackLayout Grid.Column="1">
-                <Entry x:Name="TxtNombre"></Entry>
+                <!--<Entry x:Name="TxtAsociado" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtAsociado" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+                <!--<Frame BorderColor="Black" CornerRadius="6">
+                    <Entry x:Name="TxtAsociado" Keyboard="Chat"></Entry>
+                </Frame>-->
             </StackLayout>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
-                <Label Text="Nombre" Style="{StaticResource LabelStyle}"  />
+                <Label Text="Institucion" Style="{StaticResource LabelStyle}"  />
             </StackLayout>
             <StackLayout Grid.Column="1">
-                <Entry x:Name="TxtApe1"></Entry>
+                <!--<Entry x:Name="TxtInstitucion" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtInstitucion" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
         </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Afiliación" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtInstitucion" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtAfiliacion" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Fidelidad" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtInstitucion" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtFidelidad" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Creditos" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtNCred" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtNCred" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Ahorros" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtNAh" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtNAh" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Inversiones" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtNAh" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtNIv" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="Categoria" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtCategoria" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtCategoria" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="CPH" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtCPH" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtCPH" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label Text="CPC" Style="{StaticResource LabelStyle}"  />
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <!--<Entry x:Name="TxtCPC" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
+                <local:TxtCaja x:Name="TxtCPC" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+        </Grid>
+     
         
+       
 
     </Grid>
+    
 
 </ContentPage>

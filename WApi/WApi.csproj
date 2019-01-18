@@ -99,7 +99,9 @@
       <DependentUpon>MdlViewQ.edmx</DependentUpon>
       <LastGenOutput>MdlViewQ.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -108,6 +110,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Clientes.cs">
+      <DependentUpon>MdlViewQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Creditos.cs">
+      <DependentUpon>MdlViewQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InfoClientes.cs">
       <DependentUpon>MdlViewQ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MdlViewQ.Context.cs">
@@ -124,6 +132,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MdlViewQ.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Producto.cs">
+      <DependentUpon>MdlViewQ.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

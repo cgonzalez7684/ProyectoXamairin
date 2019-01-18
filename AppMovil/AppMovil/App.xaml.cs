@@ -7,11 +7,16 @@ namespace AppMovil
 {
     public partial class App : Application
     {
+        public static ApiServices.ApiViewQ Servicio { get; set; }
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            Servicio = new ApiServices.ApiViewQ();
+            //MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new LoginPage();
+            
         }
 
         protected override void OnStart()
