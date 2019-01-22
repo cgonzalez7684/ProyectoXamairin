@@ -3,52 +3,86 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppMovil
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    struct Cred
+    {
+        public string IdOperacion { get; set; }
+        public double Saldo { get; set; }
+    }
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CreditosPage : ContentPage
 	{
+        List<Cred> OperaEnca;
 		public CreditosPage ()
 		{
-			InitializeComponent ();
-            var EstiloCaja = new Style(typeof(TxtCaja))
+            OperaEnca = new List<Cred>();
+
+            foreach (Entidades.InfoOperacion item in App.objCliente.Operaciones)
             {
-                Setters = {
-                      new Setter { Property = Entry.TextColorProperty, Value = Color.DarkBlue },
-                      new Setter { Property = Entry.FontSizeProperty, Value = 20 },
-                      new Setter { Property = Entry.HorizontalTextAlignmentProperty, Value = "Center" },
-                      new Setter { Property = Entry.InputTransparentProperty, Value = true }
-                    }
+                Cred obj = new Cred();
+                obj.IdOperacion = item.Operacion;
+                obj.Saldo = item.SaldoActual;
+                OperaEnca.Add(obj);
+            }
 
-                //< Setter Property = "TextColor" Value = "DarkBlue" ></ Setter >
-                //< Setter Property = "FontSize" Value = "Medium" ></ Setter >
-                //< Setter Property = "HorizontalTextAlignment" Value = "Center" ></ Setter >
-                //< Setter Property = "InputTransparent" Value = "True" ></ Setter >
+            //listView.SetBinding(ListView.ItemsSourceProperty, new Binding();
+            //listView = new ListView();
+            listView.ItemsSource = OperaEnca;
 
-            };
+            //var listView = new ListView();
 
-            var grid = new Grid() { RowSpacing = 2};
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            //listView.ItemsSource = new[] { "a", "b", "c" };
+            //listView.ItemsSource = App.objCliente.Operaciones;
+            //listView.ItemsSource = OperaEnca;
 
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(230) });
 
-            var caja = new TxtCaja { Text = "CRED321444", Style = EstiloCaja };
-            var caja2 = new TxtCaja { Text = "3500000", Style = EstiloCaja };
-            var caja3 = new TxtCaja { Text = "CRED213432", Style = EstiloCaja };
-            var caja4 = new TxtCaja { Text = "1000000", Style = EstiloCaja };
 
-            grid.Children.Add(caja, 0, 0);
-            grid.Children.Add(caja2, 1, 0);
-            grid.Children.Add(caja3, 0, 1);
-            grid.Children.Add(caja4, 1, 1);
+            // Using ItemTapped
+            //listView.ItemTapped += async (sender, e) => {
 
-            this.Content = grid;
+            //    await DisplayAlert("Tapped", e.Item + " row was tapped", "OK");
+            //    //Debug.WriteLine("Tapped: " + e.Item);
+            //    ((ListView)sender).SelectedItem = null; // de-select the row
+            //};
+
+            // If using ItemSelected
+            //listView.ItemSelected += (sender, e) =>
+            //{
+            //    if (e.SelectedItem == null) return;
+            //    //Debug.WriteLine("Selected: " + e.SelectedItem);
+            //    ((ListView)sender).SelectedItem = null; // de-select the row
+            //};
+
+            //Padding = new Thickness(0, 20, 0, 0);
+            //Content = listView;
         }
-	}
+        public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null) return; // has been set to null, do not 'process' tapped event
+            DisplayAlert("Tapped", e.SelectedItem + " row was tapped", "OK");
+            ((ListView)sender).SelectedItem = null; // de-select the row
+        }
+
+        public void OnMore(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            DisplayAlert("More Context Action", mi.CommandParameter + " more context action", "OK");
+        }
+
+        public void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            //DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+
+            //Debug.WriteLine("delete " + mi.CommandParameter.ToString());
+           // OperaEnca.Remove(mi.CommandParameter.ToString());
+        }
+
+    }
 }

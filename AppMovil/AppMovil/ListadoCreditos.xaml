@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMovil.ListadoCreditos">
+    <ContentPage.Content>
+        
+            <!--<Label Text="Top Left" Grid.Row="0" Grid.Column="0" />
+            <Label Text="Top Right" Grid.Row="0" Grid.Column="1" />
+            <Label Text="Bottom Left" Grid.Row="1" Grid.Column="0" />
+            <Label Text="Bottom Right" Grid.Row="1" Grid.Column="1" />-->
+        
+
+        <ListView x:Name="LstOperaciones">
+              
+            <ListView.ItemTemplate>
+                    
+                <DataTemplate>                        
+                        <ViewCell>
+                        <StackLayout Orientation="Horizontal">                                
+                                <Label Text="{Binding IdOperacion}" />
+                            <Label Text="{Binding Saldo}"/>
+                            <Button Text="Tx" x:Name="Btn1" HeightRequest="38" BackgroundColor="Orange" TextColor="White" VerticalOptions="EndAndExpand"></Button>
+                            </StackLayout>
+                        </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+       
+
+    </ContentPage.Content>
+</ContentPage>

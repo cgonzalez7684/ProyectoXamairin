@@ -27,6 +27,10 @@ namespace AppMovil.Entidades
         public int Cph { get; set; }
         [JsonProperty(PropertyName = "Cpc")]
         public int Cpc { get; set; }
-        
+        [JsonProperty(PropertyName = "Operaciones")]
+        public List<Entidades.InfoOperacion> Operaciones { get; set; }
+
+
+
     }
 }

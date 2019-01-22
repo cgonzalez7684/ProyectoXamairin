@@ -5,70 +5,16 @@
              x:Class="AppMovil.CreditosPage" BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="LabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
-                <Setter Property="TextColor" Value="CadetBlue" />
-            </Style>
-            <Style x:Key="EntryStyle" TargetType="Entry">
-                <Setter Property="Placeholder" Value="Dato"/>
-
-            </Style>
-            <Style x:Key="Mica" TargetType="local:TxtCaja">
-                <Setter Property="TextColor" Value="DarkBlue"></Setter>
-                <Setter Property="FontSize" Value="Medium"></Setter>
-                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-                <Setter Property="InputTransparent" Value="True"></Setter>
-
-                <!--<Setter Property="MaxLength" Value="10"></Setter>-->
-            </Style>
-            <Style x:Key="StyCedula" TargetType="local:TxtCaja">
-                <Setter Property="TextColor" Value="DarkBlue"></Setter>
-                <Setter Property="FontSize" Value="Large"></Setter>
-                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-                <Setter Property="BackgroundColor" Value="White"></Setter>
-                <!--<Setter Property="MaxLength" Value="10"></Setter>-->
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <!--Comentario nuevo-->
-    <!--<Grid RowSpacing="2">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />            
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0">
-                <Entry x:Name="TxtCed" Keyboard="Numeric" InputTransparent="True"  BackgroundColor="CadetBlue" TextColor="White" Text="CREDITOS" FontSize="30" HorizontalTextAlignment="Center"></Entry>
-                --><!--<local:TxtCaja x:Name="TxtCed" Style="{StaticResource Key=StyCedula}" BackgroundColor="Bisque" Placeholder="Ingresar cedula"></local:TxtCaja>-->
-                <!--<Frame BorderColor="Black" CornerRadius="6">
-                    <Entry x:Name="TxtAsociado" Keyboard="Chat"></Entry>
-                </Frame>--><!--
-            </StackLayout>
-        </Grid>
-        --><!--<Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0">
-                <local:TxtCaja x:Name="TxtOpe" Style="{StaticResource Key=Mica}" Text="CRED342444"></local:TxtCaja>
-            </StackLayout>
-            <StackLayout Grid.Column="1">
-                --><!--<Entry x:Name="TxtAsociado" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>--><!--
-                <local:TxtCaja x:Name="TxtSaldo" Style="{StaticResource Key=Mica}" Text="3500000"></local:TxtCaja>
-                --><!--<Frame BorderColor="Black" CornerRadius="6">
-                    <Entry x:Name="TxtAsociado" Keyboard="Chat"></Entry>
-                </Frame>--><!--
-            </StackLayout>
-        </Grid>--><!--
-    </Grid>-->
-
+    <ListView x:Name="listView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>            
+                    <StackLayout>
+                        <Label Text="{Binding IdOperacion}" />
+                    </StackLayout>                   
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </ContentPage>

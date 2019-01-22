@@ -8,6 +8,7 @@ namespace AppMovil
     public partial class App : Application
     {
         public static ApiServices.ApiViewQ Servicio { get; set; }
+        public static Entidades.InfoCliente objCliente { get; set; }
 
         public App()
         {

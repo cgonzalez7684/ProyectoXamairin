@@ -12,27 +12,36 @@ namespace AppMovil
     public partial class MainPage : ContentPage
     {
 
-        public Entidades.InfoCliente objCliente { get; set; }
+        //public Entidades.InfoCliente objCliente { get; set; }
 
         public MainPage()
         {
             BindingContext = this;
             InitializeComponent();
-            BtnConsultar.Command = new Command(() =>
-            {
-                CargarInfoCliente();
+            //BtnConsultar.Command = new Command(() =>
+            //{
+            //    CargarInfoCliente();
 
-            });
+            //});
 
-            //BtnConsultar.Clicked += BtnConsultar_Clicked;
+            //TxtCed.Focused += TxtCed_Focused;
 
-            TxtCed.Focused += TxtCed_Focused;
+            BtnConsultar.Clicked += BtnConsultar_Clicked;
+            Btn5.Clicked += Btn5_Clicked;
+
+
+        }
+
+        private void Btn5_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ListadoCreditos());
         }
 
         private void BtnConsultar_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new CreditosPage());
-            
+            CargarInfoCliente();
+
         }
 
         private void TxtCed_Focused(object sender, FocusEventArgs e)
@@ -63,23 +72,24 @@ namespace AppMovil
                     TxtCed.Focus();
                     return;
                 }
-                objCliente = data[0];
-                if (objCliente.NombreCliente.Length <= 0)
+                App.objCliente = data[0];
+                if (App.objCliente.NombreCliente.Length <= 0)
                 {
                     await DisplayAlert("Validación", "Identificación no encontrada", "Continuar");
                     TxtCed.Focus();
                     return;
                 }
-                TxtAsociado.Text = objCliente.NombreCliente;
-                TxtInstitucion.Text = objCliente.Institucion;
-                TxtAfiliacion.Text = objCliente.Afiliacion.ToShortDateString();
-                TxtFidelidad.Text = objCliente.Fidelidad.ToString();
-                TxtNCred.Text = objCliente.NumCreditos.ToString();
-                TxtNAh.Text = objCliente.NumAhorros.ToString();
-                TxtNIv.Text = objCliente.NumInversiones.ToString();
-                TxtCategoria.Text = objCliente.CatSugef;
-                TxtCPC.Text = objCliente.Cpc.ToString();
-                TxtCPH.Text = objCliente.Cph.ToString();
+                
+                TxtAsociado.Text = App.objCliente.NombreCliente;
+                TxtInstitucion.Text = App.objCliente.Institucion;
+                TxtAfiliacion.Text = App.objCliente.Afiliacion.ToShortDateString();
+                TxtFidelidad.Text = App.objCliente.Fidelidad.ToString();
+                TxtNCred.Text = App.objCliente.NumCreditos.ToString();
+                TxtNAh.Text = App.objCliente.NumAhorros.ToString();
+                TxtNIv.Text = App.objCliente.NumInversiones.ToString();
+                TxtCategoria.Text = App.objCliente.CatSugef;
+                TxtCPC.Text = App.objCliente.Cpc.ToString();
+                TxtCPH.Text = App.objCliente.Cph.ToString();
 
                 //Debug.WriteLine(data[0]);
             }

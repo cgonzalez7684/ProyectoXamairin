@@ -7,12 +7,11 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="LabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="18"/>
+            <Style x:Key="LabelStyle" TargetType="Label">               
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
-                <Setter Property="TextColor" Value="CadetBlue" />
+                <Setter Property="TextColor" Value="Blue" />
             </Style>
             <Style x:Key="EntryStyle" TargetType="Entry">
                 <Setter Property="Placeholder" Value="Dato"/>
@@ -22,7 +21,9 @@
                 <Setter Property="TextColor" Value="DarkBlue"></Setter>
                 <Setter Property="FontSize" Value="Medium"></Setter>
                 <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-                <Setter Property="InputTransparent" Value="True"></Setter>
+                <Setter Property="InputTransparent" Value="True"></Setter>          
+                
+                <Setter Property="HeightRequest" Value="36"></Setter>
                 
                 <!--<Setter Property="MaxLength" Value="10"></Setter>-->
             </Style>
@@ -36,7 +37,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <!--Comentario nuevo-->
-    <Grid RowSpacing="2">
+    <Grid RowSpacing="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -77,7 +78,8 @@
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Asociado" Style="{StaticResource LabelStyle}"  />
@@ -89,24 +91,32 @@
                     <Entry x:Name="TxtAsociado" Keyboard="Chat"></Entry>
                 </Frame>-->
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn1" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0">
+            <StackLayout Grid.Column="0" VerticalOptions="Center">
                 <Label Text="Institucion" Style="{StaticResource LabelStyle}"  />
             </StackLayout>
-            <StackLayout Grid.Column="1">
+            <StackLayout Grid.Column="1" VerticalOptions="Center">
                 <!--<Entry x:Name="TxtInstitucion" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtInstitucion" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+            <StackLayout Grid.Column="2" VerticalOptions="Fill">
+                <Button Text="Tx" x:Name="Btn2" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
             </StackLayout>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Afiliación" Style="{StaticResource LabelStyle}"  />
@@ -115,11 +125,15 @@
                 <!--<Entry x:Name="TxtInstitucion" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtAfiliacion" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn3" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Fidelidad" Style="{StaticResource LabelStyle}"  />
@@ -128,11 +142,15 @@
                 <!--<Entry x:Name="TxtInstitucion" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtFidelidad" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn4" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Creditos" Style="{StaticResource LabelStyle}"  />
@@ -141,11 +159,15 @@
                 <!--<Entry x:Name="TxtNCred" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtNCred" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn5" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Ahorros" Style="{StaticResource LabelStyle}"  />
@@ -154,11 +176,15 @@
                 <!--<Entry x:Name="TxtNAh" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtNAh" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn6" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Inversiones" Style="{StaticResource LabelStyle}"  />
@@ -167,11 +193,15 @@
                 <!--<Entry x:Name="TxtNAh" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtNIv" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn7" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="Categoria" Style="{StaticResource LabelStyle}"  />
@@ -180,11 +210,15 @@
                 <!--<Entry x:Name="TxtCategoria" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtCategoria" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn8" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="CPH" Style="{StaticResource LabelStyle}"  />
@@ -193,11 +227,15 @@
                 <!--<Entry x:Name="TxtCPH" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtCPH" Style="{StaticResource Key=Mica}"></local:TxtCaja>
             </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn9" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
+            </StackLayout>
         </Grid>
         <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0">
                 <Label Text="CPC" Style="{StaticResource LabelStyle}"  />
@@ -205,6 +243,9 @@
             <StackLayout Grid.Column="1">
                 <!--<Entry x:Name="TxtCPC" Keyboard="Chat" Style="{StaticResource EntryStyle}"></Entry>-->
                 <local:TxtCaja x:Name="TxtCPC" Style="{StaticResource Key=Mica}"></local:TxtCaja>
+            </StackLayout>
+            <StackLayout Grid.Column="2">
+                <Button Text="Tx" x:Name="Btn10" HeightRequest="38" BackgroundColor="Orange" TextColor="White"></Button>
             </StackLayout>
         </Grid>
      
